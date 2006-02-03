@@ -1,3 +1,7 @@
+
+%define		toolkit_date	20040603
+%define		elf2flt_date	20040326
+
 Summary:	Cross  GNU binary utility development utilities - binutils
 Summary(es):	Utilitarios para desarrollo de binarios de la GNU - m68k binutils
 Summary(fr):	Utilitaires de développement binaire de GNU - m68k binutils
@@ -11,11 +15,14 @@ License:	GPL
 Group:		Development/Tools
 Source0:	ftp://ftp.kernel.org/pub/linux/devel/binutils/binutils-%{version}.tar.bz2
 # Source0-md5:	29fdde06e229672daaaacbf52362520a
+Source1:	http://www.uclinux.org/pub/uClinux/m68k-elf-tools/gcc-3/uclinux-tools-%{toolkit_date}/elf2flt-%{elf2flt_date}.tar.bz2
+# Source1-md5:	6263c07332f76e2c8b9428dc8bf8a6b8
 URL:		http://sources.redhat.com/binutils/
 BuildRequires:	automake
 BuildRequires:	bash
 BuildRequires:	bison
 BuildRequires:	flex
+BuildRequires:	sed
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		target		m68k-pld-linux
@@ -46,7 +53,9 @@ programów i bibliotek.
 Ten pakiet zawiera wersjê skro¶n± generuj±c± kod dla m68k.
 
 %prep
-%setup -q -n binutils-%{version}
+%setup -q -n binutils-%{version} -a1
+sed -i 's/>_raw_size/>rawsize/g' elf2flt-%{elf2flt_date}/elf2flt.c
+sed -i 's/-static//g'		 elf2flt-%{elf2flt_date}/Makefile.in
 
 %build
 cp /usr/share/automake/config.sub .
@@ -55,9 +64,6 @@ cp /usr/share/automake/config.sub .
 CFLAGS="%{rpmcflags} -fno-strict-aliasing" \
 LDFLAGS="%{rpmldflags}" \
 CONFIG_SHELL="/bin/bash" \
-%ifarch sparc
-sparc32 \
-%endif
 ./configure \
 	--disable-shared \
 	--disable-nls \
@@ -70,6 +76,21 @@ sparc32 \
 %{__make} all \
 	tooldir=%{_prefix} \
 	EXEEXT=""
+
+# Build elf2lft
+cd elf2flt-%{elf2flt_date}
+
+CFLAGS="%{rpmcflags} -fno-strict-aliasing" \
+LDFLAGS="%{rpmldflags}" \
+./configure \
+    --with-libbfd=../bfd/libbfd.a \
+    --with-libiberty=../libiberty/libiberty.a \
+    --with-bfd-include-dir=../bfd \
+    --with-binutils-include-dir=../include \
+    --target=%{target} \
+    --prefix=%{_prefix}
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -84,6 +105,29 @@ install -d $RPM_BUILD_ROOT%{_prefix}
 # remove these man pages unless we cross-build for win*/netware platforms.
 # however, this should be done in Makefiles.
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/{*dlltool,*nlmconv,*windres}.1
+
+# Install elf2flt
+mv $RPM_BUILD_ROOT%{arch}/bin/ld		\
+	$RPM_BUILD_ROOT%{arch}/bin/ld.real
+
+mv $RPM_BUILD_ROOT%{_bindir}/%{target}-ld	\
+	$RPM_BUILD_ROOT%{_bindir}/%{target}-ld.real
+
+for prog in flthdr elf2flt; do
+    install elf2flt-%{elf2flt_date}/$prog	\
+	$RPM_BUILD_ROOT%{arch}/bin/$prog
+    install elf2flt-%{elf2flt_date}/$prog	\
+	$RPM_BUILD_ROOT%{_bindir}/%{target}-$prog
+done
+
+install elf2flt-%{elf2flt_date}/ld-elf2flt	\
+	$RPM_BUILD_ROOT%{arch}/bin/ld
+
+install elf2flt-%{elf2flt_date}/ld-elf2flt	\
+	$RPM_BUILD_ROOT%{_bindir}/%{target}-ld
+	
+install elf2flt-%{elf2flt_date}/elf2flt.ld	\
+	$RPM_BUILD_ROOT%{arch}/lib/ldscripts/elf2flt.ld
 
 %clean
 rm -rf $RPM_BUILD_ROOT
