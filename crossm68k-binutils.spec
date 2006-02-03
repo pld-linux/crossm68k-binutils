@@ -56,6 +56,8 @@ Ten pakiet zawiera wersjê skro¶n± generuj±c± kod dla m68k.
 %setup -q -n binutils-%{version} -a1
 sed -i 's/>_raw_size/>rawsize/g' elf2flt-%{elf2flt_date}/elf2flt.c
 sed -i 's/-static//g'		 elf2flt-%{elf2flt_date}/Makefile.in
+sed -i 's@LDSCRIPTPATH="${TOOLDIR}/../lib"@LDSCRIPTPATH="${TOOLDIR}/../lib/ldscripts"@g'	\
+    elf2flt-%{elf2flt_date}/ld-elf2flt.in
 
 %build
 cp /usr/share/automake/config.sub .
