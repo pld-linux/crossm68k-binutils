@@ -85,12 +85,12 @@ cd elf2flt-%{elf2flt_date}
 CFLAGS="%{rpmcflags} -fno-strict-aliasing" \
 LDFLAGS="%{rpmldflags}" \
 ./configure \
-    --with-libbfd=../bfd/libbfd.a \
-    --with-libiberty=../libiberty/libiberty.a \
-    --with-bfd-include-dir=../bfd \
-    --with-binutils-include-dir=../include \
-    --target=%{target} \
-    --prefix=%{_prefix}
+	--with-libbfd=../bfd/libbfd.a \
+	--with-libiberty=../libiberty/libiberty.a \
+	--with-bfd-include-dir=../bfd \
+	--with-binutils-include-dir=../include \
+	--target=%{target} \
+	--prefix=%{_prefix}
 
 %{__make}
 
@@ -116,16 +116,16 @@ mv $RPM_BUILD_ROOT%{_bindir}/%{target}-ld	\
 	$RPM_BUILD_ROOT%{_bindir}/%{target}-ld.real
 
 for prog in flthdr elf2flt; do
-    install elf2flt-%{elf2flt_date}/$prog	\
-	$RPM_BUILD_ROOT%{arch}/bin/$prog
-    install elf2flt-%{elf2flt_date}/$prog	\
-	$RPM_BUILD_ROOT%{_bindir}/%{target}-$prog
+	install elf2flt-%{elf2flt_date}/$prog \
+		$RPM_BUILD_ROOT%{arch}/bin/$prog
+	ln $RPM_BUILD_ROOT%{arch}/bin/$prog \
+		$RPM_BUILD_ROOT%{_bindir}/%{target}-$prog
 done
 
 install elf2flt-%{elf2flt_date}/ld-elf2flt	\
 	$RPM_BUILD_ROOT%{arch}/bin/ld
 
-install elf2flt-%{elf2flt_date}/ld-elf2flt	\
+ln $RPM_BUILD_ROOT%{arch}/bin/ld \
 	$RPM_BUILD_ROOT%{_bindir}/%{target}-ld
 	
 install elf2flt-%{elf2flt_date}/elf2flt.ld	\
