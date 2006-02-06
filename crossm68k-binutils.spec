@@ -1,6 +1,6 @@
 
-%define		toolkit_date	20040603
-%define		elf2flt_date	20040326
+%define		toolkit_date	20050221
+%define		elf2flt_date	20041205
 
 Summary:	Cross  GNU binary utility development utilities - binutils
 Summary(es):	Utilitarios para desarrollo de binarios de la GNU - m68k binutils
@@ -15,8 +15,8 @@ License:	GPL
 Group:		Development/Tools
 Source0:	ftp://ftp.kernel.org/pub/linux/devel/binutils/binutils-%{version}.tar.bz2
 # Source0-md5:	29fdde06e229672daaaacbf52362520a
-Source1:	http://www.uclinux.org/pub/uClinux/m68k-elf-tools/gcc-3/uclinux-tools-%{toolkit_date}/elf2flt-%{elf2flt_date}.tar.bz2
-# Source1-md5:	6263c07332f76e2c8b9428dc8bf8a6b8
+Source1:	http://www.develer.com/uclinux/uclinux-tools-%{toolkit_date}/elf2flt-%{elf2flt_date}.tar.bz2
+# Source1-md5:	fee884cc589de2febf5749a85b05403a
 URL:		http://sources.redhat.com/binutils/
 BuildRequires:	automake
 BuildRequires:	bash
@@ -25,7 +25,7 @@ BuildRequires:	flex
 BuildRequires:	sed
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		target		m68k-pld-linux
+%define		target		m68k-elf
 %define		arch		%{_prefix}/%{target}
 
 %description
@@ -54,7 +54,6 @@ Ten pakiet zawiera wersjê skro¶n± generuj±c± kod dla m68k.
 
 %prep
 %setup -q -n binutils-%{version} -a1
-sed -i 's/>_raw_size/>rawsize/g' elf2flt-%{elf2flt_date}/elf2flt.c
 sed -i 's/-static//g'		 elf2flt-%{elf2flt_date}/Makefile.in
 sed -i 's@LDSCRIPTPATH="${TOOLDIR}/../lib"@LDSCRIPTPATH="${TOOLDIR}/../lib/ldscripts"@g'	\
     elf2flt-%{elf2flt_date}/ld-elf2flt.in
