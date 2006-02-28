@@ -126,7 +126,7 @@ install elf2flt-%{elf2flt_date}/ld-elf2flt	\
 
 ln $RPM_BUILD_ROOT%{arch}/bin/ld \
 	$RPM_BUILD_ROOT%{_bindir}/%{target}-ld
-	
+
 install elf2flt-%{elf2flt_date}/elf2flt.ld	\
 	$RPM_BUILD_ROOT%{arch}/lib/ldscripts/elf2flt.ld
 
