@@ -3,11 +3,11 @@
 %define		elf2flt_date	20041205
 
 Summary:	Cross  GNU binary utility development utilities - binutils
-Summary(es):	Utilitarios para desarrollo de binarios de la GNU - m68k binutils
-Summary(fr):	Utilitaires de développement binaire de GNU - m68k binutils
-Summary(pl):	Skro¶ne narzêdzia programistyczne GNU dla m68k - binutils
-Summary(pt_BR):	Utilitários para desenvolvimento de binários da GNU - m68k binutils
-Summary(tr):	GNU geliştirme araçları - m68k binutils
+Summary(es.UTF-8):   Utilitarios para desarrollo de binarios de la GNU - m68k binutils
+Summary(fr.UTF-8):   Utilitaires de dÃ©veloppement binaire de GNU - m68k binutils
+Summary(pl.UTF-8):   SkroÅ›ne narzÄ™dzia programistyczne GNU dla m68k - binutils
+Summary(pt_BR.UTF-8):   UtilitÃ¡rios para desenvolvimento de binÃ¡rios da GNU - m68k binutils
+Summary(tr.UTF-8):   GNU geliÅŸtirme araÃ§larÄ± - m68k binutils
 Name:		crossm68k-binutils
 Version:	2.16.91.0.5
 Release:	1
@@ -44,13 +44,13 @@ Binutils is a collection of binary utilities, including:
 
 This package contains the cross version for m68k.
 
-%description -l pl
-Pakiet binutils zawiera zestaw narzêdzi umo¿liwiaj±cych kompilacjê
-programów. Znajduj± siê tutaj miêdzy innymi assembler, konsolidator
-(linker), a tak¿e inne narzêdzia do manipulowania binarnymi plikami
-programów i bibliotek.
+%description -l pl.UTF-8
+Pakiet binutils zawiera zestaw narzÄ™dzi umoÅ¼liwiajÄ…cych kompilacjÄ™
+programÃ³w. ZnajdujÄ… siÄ™ tutaj miÄ™dzy innymi assembler, konsolidator
+(linker), a takÅ¼e inne narzÄ™dzia do manipulowania binarnymi plikami
+programÃ³w i bibliotek.
 
-Ten pakiet zawiera wersjê skro¶n± generuj±c± kod dla m68k.
+Ten pakiet zawiera wersjÄ™ skroÅ›nÄ… generujÄ…cÄ… kod dla m68k.
 
 %prep
 %setup -q -n binutils-%{version} -a1
