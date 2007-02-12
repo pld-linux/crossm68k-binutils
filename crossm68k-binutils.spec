@@ -3,11 +3,11 @@
 %define		elf2flt_date	20041205
 
 Summary:	Cross  GNU binary utility development utilities - binutils
-Summary(es.UTF-8):   Utilitarios para desarrollo de binarios de la GNU - m68k binutils
-Summary(fr.UTF-8):   Utilitaires de développement binaire de GNU - m68k binutils
-Summary(pl.UTF-8):   Skrośne narzędzia programistyczne GNU dla m68k - binutils
-Summary(pt_BR.UTF-8):   Utilitários para desenvolvimento de binários da GNU - m68k binutils
-Summary(tr.UTF-8):   GNU geliştirme araçları - m68k binutils
+Summary(es.UTF-8):	Utilitarios para desarrollo de binarios de la GNU - m68k binutils
+Summary(fr.UTF-8):	Utilitaires de développement binaire de GNU - m68k binutils
+Summary(pl.UTF-8):	Skrośne narzędzia programistyczne GNU dla m68k - binutils
+Summary(pt_BR.UTF-8):	Utilitários para desenvolvimento de binários da GNU - m68k binutils
+Summary(tr.UTF-8):	GNU geliştirme araçları - m68k binutils
 Name:		crossm68k-binutils
 Version:	2.16.91.0.5
 Release:	1
