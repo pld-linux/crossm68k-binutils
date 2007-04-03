@@ -2,7 +2,7 @@
 %define		toolkit_date	20060615
 %define		elf2flt_date	20060608
 
-Summary:	Cross  GNU binary utility development utilities - binutils
+Summary:	Cross GNU binary utility development utilities - binutils
 Summary(es.UTF-8):	Utilitarios para desarrollo de binarios de la GNU - m68k binutils
 Summary(fr.UTF-8):	Utilitaires de développement binaire de GNU - m68k binutils
 Summary(pl.UTF-8):	Skrośne narzędzia programistyczne GNU dla m68k - binutils
@@ -54,9 +54,9 @@ Ten pakiet zawiera wersję skrośną generującą kod dla m68k.
 
 %prep
 %setup -q -n binutils-%{version} -a1
-sed -i 's/-static//g'		 elf2flt-%{elf2flt_date}/Makefile.in
-sed -i 's@LDSCRIPTPATH="${TOOLDIR}/../lib"@LDSCRIPTPATH="${TOOLDIR}/../lib/ldscripts"@g'	\
-    elf2flt-%{elf2flt_date}/ld-elf2flt.in
+sed -i 's/-static//g' elf2flt-%{elf2flt_date}/Makefile.in
+sed -i 's@LDSCRIPTPATH="${TOOLDIR}/../lib"@LDSCRIPTPATH="${TOOLDIR}/../lib/ldscripts"@g' \
+	elf2flt-%{elf2flt_date}/ld-elf2flt.in
 
 %build
 cp /usr/share/automake/config.sub .
